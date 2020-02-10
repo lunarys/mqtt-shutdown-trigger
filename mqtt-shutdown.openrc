@@ -1,0 +1,7 @@
+#!/sbin/openrc-run
+# Tutorial on https://github.com/OpenRC/openrc/blob/master/service-script-guide.md
+# Place in /etc/init.d
+command="/usr/bin/python3 /usr/local/bin/mqtt-shutdown.py"
+command_args="-f /etc/shutdown-service/mqtt-shutdown.conf"
+command_background=true
+pidfile="/run/${RC_SVCNAME}.pid"

@@ -1,0 +1,15 @@
+[Unit]
+Description=Manage remote shutdown of device
+After=network.target
+Requires=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 -u /usr/local/bin/mqtt-shutdown.py -f /etc/mqtt-integration/mqtt-shutdown.conf
+Restart=always
+RestartSec=30s
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

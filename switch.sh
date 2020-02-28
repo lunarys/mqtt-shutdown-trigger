@@ -1,11 +1,12 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
+
+if [ "$1" == "--help" ] || [ "$1" == "-h" ] || [ "$1" == "help"]; then
 	echo "Usage: $0 <disable|enable|hold|continue> [ON|OFF] [name]"
-	exit 1
+	exit 0
 fi
 
-op="$1"
+op="${1:-"switch-hold"}"
 dir="/etc/mqtt-integration/shutdown-service"
 disable="disable"
 hold="hold"
@@ -25,8 +26,10 @@ function switch {
 	fi
 
 	if [ "$mode" == "ON" ]; then
+		echo " -> ON"
 		touch $currfile
 	elif [ "$mode" == "OFF" ]; then
+		echo " -> OFF"
 		rm $currfile
 	else
 		echo "Mode unknown: $mode"
@@ -46,6 +49,7 @@ function switch-enable {
 		fi
 	fi
 
+	echo "Switching disable flag:"
 	switch "$mode" "$currfile"
 }
 
@@ -58,10 +62,16 @@ function switch-hold {
 		local currfile="${hold_file}-${name}"
 	fi
 
+	echo "Switching hold flag:"
 	switch "$mode" "$currfile"
 }
 
 case "$op" in
+	# Default action
+	"switch-hold")
+		switch-hold ""
+		;;
+	# Explicit actions
 	"disable")
 		switch-enable ON
 		;;

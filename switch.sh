@@ -1,7 +1,5 @@
 #!/bin/bash
-
-
-if [ "$1" == "--help" ] || [ "$1" == "-h" ] || [ "$1" == "help"]; then
+if [ "$1" == "--help" ] || [ "$1" == "-h" ] || [ "$1" == "help" ]; then
 	echo "Usage: $0 <disable|enable|hold|continue> [ON|OFF] [name]"
 	exit 0
 fi

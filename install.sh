@@ -22,6 +22,6 @@ echo "Please configure this service in '/etc/mqtt-integration/mqtt-shutdown.conf
 
 mkdir -p /etc/mqtt-integration/shutdown-service
 chown root:1000 /etc/mqtt-integration/shutdown-service
-chmod 664 /etc/mqtt-integration/shutdown-service
+chmod 775 /etc/mqtt-integration/shutdown-service
 
 echo "This service can be started using 'systemctl enable mqtt-shutdown.service'"
